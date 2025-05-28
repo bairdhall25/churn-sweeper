@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Churn Sweeper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="top-bar">
+    <div id="arr-counter">ARR: $0</div>
+    <div id="churn-meter">Churn: 0%</div>
+    <button id="mute-toggle" title="Mute/Unmute">🔊</button>
+  </div>
+  <div id="main-content">
+    <aside id="slackbot-sidebar">
+      <div id="slackbot-header">🤖 Slackbot</div>
+      <div id="slackbot-messages"></div>
+    </aside>
+    <main id="game-board">
+      <!-- 10x10 grid will be generated here -->
+    </main>
+  </div>
+  <footer id="toolbelt-bar">
+    <!-- Toolbelt tools will be generated here -->
+  </footer>
+  <script src="game.js"></script>
+</body>
+</html> 
