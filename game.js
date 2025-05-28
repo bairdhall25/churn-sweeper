@@ -162,7 +162,8 @@ class MusicManager {
           decay: 0.2,
           sustain: 0.3,
           release: 0.4
-        }
+        },
+        volume: -20 // Reduce volume by 20dB
       }).toDestination();
 
       // Bass synth - punchy
@@ -175,7 +176,8 @@ class MusicManager {
           decay: 0.1,
           sustain: 0.2,
           release: 0.2
-        }
+        },
+        volume: -22 // Reduce volume by 22dB
       }).toDestination();
 
       // Lead synth - bright and playful
@@ -188,7 +190,8 @@ class MusicManager {
           decay: 0.1,
           sustain: 0.2,
           release: 0.2
-        }
+        },
+        volume: -18 // Reduce volume by 18dB
       }).toDestination();
 
       // Drum synth - snappy
@@ -200,7 +203,8 @@ class MusicManager {
           attack: 0.001,
           decay: 0.1,
           sustain: 0
-        }
+        },
+        volume: -25 // Reduce volume by 25dB
       }).toDestination();
 
       this.initialized = true;
