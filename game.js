@@ -133,6 +133,7 @@ let boardState = [];
 let selectedTool = null;
 let arr = 0;
 let churn = 0;
+let logoChurn = 0;
 let isMuted = false;
 
 class MusicManager {
@@ -509,7 +510,10 @@ function onTileClick(e) {
     TOOLBELT.forEach(tool => {
       const btn = document.createElement('button');
       btn.className = 'tool-selection-btn';
-      btn.innerHTML = `<span>${tool.icon}</span> <span>${tool.name}</span>`;
+      btn.innerHTML = `
+        <span class="tool-icon">${tool.icon}</span>
+        <span class="tool-name">${tool.name}</span>
+      `;
       btn.addEventListener('click', () => {
         // Remove dialog
         document.body.removeChild(dialog);
@@ -523,7 +527,9 @@ function onTileClick(e) {
         resultDialog.className = 'tool-selection-dialog';
         resultDialog.innerHTML = `
           <div class="dialog-content">
-            <h3>${tool.name === tile.requiredFix ? 'Correct!' : 'Wrong!'}</h3>
+            <h3 class="${tool.name === tile.requiredFix ? 'success' : 'error'}">
+              ${tool.name === tile.requiredFix ? 'Correct!' : 'Wrong!'}
+            </h3>
             <div class="churn-event">${tile.churnEvent}</div>
             <div class="result-message">
               ${tool.name === tile.requiredFix 
@@ -556,6 +562,7 @@ function onTileClick(e) {
           } else {
             churn += 25;
           }
+          logoChurn += 1;
         }
         
         updateUI();
@@ -572,8 +579,9 @@ function onTileClick(e) {
 }
 
 function updateUI() {
-  document.getElementById('arr-counter').textContent = `ARR: $${arr}`;
-  document.getElementById('churn-meter').textContent = `Churn: ${churn}%`;
+  document.getElementById('arr-counter').textContent = `$${arr}`;
+  document.getElementById('churn-meter').textContent = `${churn}%`;
+  document.getElementById('logo-churn').textContent = logoChurn;
 }
 
 function checkGameEnd() {
@@ -610,6 +618,7 @@ function showEndModal(isWin) {
 function resetGame(isDaily = false) {
   arr = 0;
   churn = 0;
+  logoChurn = 0;
   selectedTool = null;
   boardState = generateBoard();
   renderGrid();
@@ -620,23 +629,6 @@ function resetGame(isDaily = false) {
     musicManager.stop();
     musicManager.play();
   }
-}
-
-function createToolbelt() {
-  const bar = document.getElementById('toolbelt-bar');
-  bar.innerHTML = '';
-  TOOLBELT.forEach((tool, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'tool';
-    btn.innerHTML = `<span>${tool.icon}</span> <span>${tool.name}</span>`;
-    btn.dataset.tool = tool.name;
-    btn.addEventListener('click', () => {
-      selectedTool = tool.name;
-      document.querySelectorAll('.tool').forEach(t => t.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
-    bar.appendChild(btn);
-  });
 }
 
 function toggleMute() {
@@ -653,7 +645,6 @@ function toggleMute() {
 window.addEventListener('DOMContentLoaded', () => {
   boardState = generateBoard();
   renderGrid();
-  createToolbelt();
   updateUI();
   
   // Initialize music on first user interaction

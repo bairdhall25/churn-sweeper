@@ -4,38 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Churn Sweeper</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/tone"></script>
 </head>
 <body>
-  <div id="top-bar">
-    <div id="arr-counter">ARR: $0</div>
-    <div id="churn-meter">Churn: 0%</div>
-    <div id="controls">
-      <button id="mute-toggle" title="Mute/Unmute">🔊</button>
-      <button id="music-toggle">🎵</button>
+  <div id="game-container">
+    <div id="header">
+      <div class="dashboard-stats">
+        <div class="stat-card arr-card">
+          <div class="stat-icon">💸</div>
+          <div class="stat-value" id="arr-counter">$0</div>
+          <div class="stat-label">ARR</div>
+        </div>
+        <div class="stat-card churn-card">
+          <div class="stat-icon">📉</div>
+          <div class="stat-value" id="churn-meter">0%</div>
+          <div class="stat-label">Churn %</div>
+        </div>
+        <div class="stat-card logo-churn-card">
+          <div class="stat-icon">🚪</div>
+          <div class="stat-value" id="logo-churn">0</div>
+          <div class="stat-label">Logo Churn</div>
+        </div>
+      </div>
+      <div id="controls">
+        <button id="mute-toggle">🔊</button>
+      </div>
+    </div>
+    <div class="board-panel">
+      <h1 class="game-title">Churn Sweeper</h1>
+      <div id="game-board"></div>
     </div>
   </div>
-  <div id="main-content">
-    <aside id="slackbot-sidebar">
-      <div id="slackbot-header">🤖 Slackbot</div>
-      <div id="slackbot-messages"></div>
-    </aside>
-    <main id="game-board">
-      <!-- 10x10 grid will be generated here -->
-    </main>
-  </div>
-  <footer id="toolbelt-bar">
-    <!-- Toolbelt tools will be generated here -->
-  </footer>
   <script src="game.js"></script>
-  <script>
-    // Add music toggle functionality
-    document.getElementById('music-toggle').addEventListener('click', () => {
-      const button = document.getElementById('music-toggle');
-      musicManager.toggle();
-      button.textContent = musicManager.isPlaying ? '🎼' : '🎵';
-    });
-  </script>
 </body>
 </html> 
