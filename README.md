@@ -36,7 +36,6 @@ A web-based SaaS simulation game inspired by Minesweeper. Reach $1,000,000 ARR b
 ## Next Steps
 
 - Slackbot messages
-- Audio/SFX
 - Flood fill for empty/safe tiles
 - Daily challenge mode with seeded boards
 
